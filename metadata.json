@@ -1,0 +1,7 @@
+{
+  "name": "Indices Lesson Pack & Interactive Studio",
+  "description": "Interactive mathematics learning pack on indices and exponent laws with real-time video views simulation, auto-grading worksheets, and teacher lesson plan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

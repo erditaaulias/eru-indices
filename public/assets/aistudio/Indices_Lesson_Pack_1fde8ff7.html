@@ -1,0 +1,726 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Indices Lesson Pack</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one workbook with three tabs. The lesson plan reads as a timed run sheet; each worksheet is a numbered grid of short exercises. Index numerals carry the one loud colour. */
+:root {
+  --bg: #F5F7FB;
+  --surface: #FFFFFF;
+  --ink: #142038;
+  --muted: #56627C;
+  --line: #D3DAE7;
+  --accent: #2340C8;
+  --accent-ink: #FFFFFF;
+  --soft: #E8EDFA;
+  --idx: #C2410C;
+  --ok: #17794A;
+  --bad: #B42318;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1527; --surface: #151D33; --ink: #E6EBF7; --muted: #9DA9C6; --line: #2B3652;
+    --accent: #8DA2FF; --accent-ink: #0E1527; --soft: #1C2644; --idx: #FF9B63; --ok: #5ED39A; --bad: #FF8F85;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1527; --surface: #151D33; --ink: #E6EBF7; --muted: #9DA9C6; --line: #2B3652;
+  --accent: #8DA2FF; --accent-ink: #0E1527; --soft: #1C2644; --idx: #FF9B63; --ok: #5ED39A; --bad: #FF8F85;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.55 var(--f-body);
+  padding-block: 1.25rem 3rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 64rem; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; line-height: 1.15; margin: 0; }
+p { margin: 0; }
+sup.i { color: var(--idx); font-weight: 700; font-size: .72em; line-height: 0; position: relative; top: -.1em; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* header */
+.hero { display: grid; gap: 1.25rem; padding-block: .5rem 1.25rem; }
+.eyebrow { font: 500 .78rem/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { font-size: clamp(2.6rem, 7vw, 4rem); font-weight: 800; letter-spacing: -.02em; }
+h1 sup { font-family: var(--f-mono); font-size: .32em; font-weight: 500; color: var(--idx); letter-spacing: 0; margin-left: .15em; vertical-align: top; position: relative; top: .35em; }
+.lo { display: grid; gap: .5rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.lo div { background: var(--surface); border: 1px solid var(--line); border-radius: .5rem; padding: .7rem .9rem; min-width: 0; }
+.lo b { display: block; font: 500 .72rem/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: .35rem; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: .4rem; border-bottom: 1px solid var(--line); margin-bottom: 1.5rem; }
+.tabs a { padding: .6rem .95rem; text-decoration: none; color: var(--muted); font-weight: 700; border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.tabs a small { display: block; font-weight: 400; font-size: .78rem; }
+.tabs a:hover { color: var(--ink); }
+.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
+
+.panel { counter-reset: q; display: grid; gap: 1.75rem; }
+.panel[hidden] { display: none !important; }
+h2 { font-size: clamp(1.5rem, 3.6vw, 2rem); font-weight: 700; }
+h3 { font-size: 1.15rem; font-weight: 700; }
+.lead { color: var(--muted); max-width: 44rem; }
+.sec { display: grid; gap: .9rem; }
+
+/* scenario */
+.story { background: var(--surface); border: 1px solid var(--line); border-radius: .75rem; padding: 1.25rem; display: grid; gap: .8rem; }
+.story p { max-width: 46rem; }
+.rewind { background: var(--soft); border-radius: .75rem; padding: 1.1rem; display: grid; gap: .9rem; }
+.rw-top { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; align-items: center; }
+.rw-top label { font-weight: 700; }
+.seg { display: inline-flex; border: 1.5px solid var(--accent); border-radius: .5rem; overflow: hidden; }
+.seg button { font: inherit; font-weight: 700; padding: .35rem .8rem; border: 0; background: transparent; color: var(--accent); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+.rw-slide { display: flex; align-items: center; gap: .75rem; flex: 1 1 14rem; min-width: 0; }
+.rw-slide input { flex: 1; min-width: 0; accent-color: var(--accent); }
+.rw-read { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem 1.5rem; }
+.rw-expr { font: 800 2.6rem/1 var(--f-display); }
+.rw-frac { font: 700 1.5rem/1.2 var(--f-display); }
+.rw-views { color: var(--muted); flex-basis: 100%; }
+.cells-scroll { overflow-x: auto; }
+.cells { display: grid; grid-template-columns: repeat(9, minmax(3.6rem, 1fr)); gap: .35rem; min-width: 34rem; }
+.cell { font: inherit; background: var(--surface); color: var(--ink); border: 1.5px solid var(--line); border-radius: .5rem; padding: .45rem .3rem; display: grid; gap: .15rem; justify-items: center; cursor: pointer; min-width: 0; }
+.cell .ck { font: 700 1rem/1 var(--f-display); }
+.cell .cv { font: 500 .78rem/1.2 var(--f-mono); color: var(--muted); }
+.cell.on { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); }
+.cell.on .cv { color: var(--accent-ink); }
+.cell.on sup.i { color: inherit; }
+
+/* run sheet */
+.run { list-style: none; margin: 0; padding: 0; display: grid; }
+.run li { display: grid; grid-template-columns: 5.5rem 1fr; gap: .25rem 1.25rem; padding: 1rem 0; border-top: 1px solid var(--line); }
+.run li:last-child { border-bottom: 1px solid var(--line); }
+.mins { font: 500 .85rem/1.6 var(--f-mono); color: var(--muted); }
+.run h3 { margin-bottom: .3rem; }
+.run p { max-width: 46rem; }
+.run .say { color: var(--muted); margin-top: .35rem; }
+
+.rules { display: grid; gap: .75rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.rule { background: var(--surface); border: 1px solid var(--line); border-radius: .6rem; padding: 1rem; display: grid; gap: .5rem; align-content: start; min-width: 0; }
+.rule .f { font: 700 1.45rem/1.2 var(--f-display); overflow-wrap: anywhere; }
+.rule p { color: var(--muted); font-size: .95rem; }
+
+.two { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); }
+.two > div { min-width: 0; display: grid; gap: .6rem; align-content: start; }
+.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: .55rem; }
+.plain li::marker { color: var(--muted); }
+.mono-note { font: 500 .85rem/1.5 var(--f-mono); color: var(--muted); }
+.exit { background: var(--surface); border: 1px dashed var(--muted); border-radius: .6rem; padding: 1rem 1.1rem; display: grid; gap: .5rem; }
+
+/* worksheets */
+.ws-head { background: var(--surface); border: 1px solid var(--line); border-radius: .75rem; padding: 1.1rem 1.25rem; display: grid; gap: .9rem; }
+.ws-head h2 small { font: 500 .8rem/1 var(--f-mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; display: block; margin-bottom: .4rem; }
+.fields { display: grid; gap: .75rem; grid-template-columns: 2fr 1fr 1fr; }
+.fields label { display: grid; gap: .15rem; font-size: .8rem; color: var(--muted); min-width: 0; }
+.fields input { font: inherit; font-size: 1rem; color: var(--ink); background: transparent; border: 0; border-bottom: 1.5px solid var(--ink); padding: .25rem 0; width: 100%; border-radius: 0; }
+.bar { display: flex; flex-wrap: wrap; gap: .5rem .6rem; align-items: center; }
+.btn { font: inherit; font-weight: 700; border-radius: .5rem; padding: .5rem .95rem; cursor: pointer; border: 1.5px solid var(--accent); background: transparent; color: var(--accent); }
+.btn.main { background: var(--accent); color: var(--accent-ink); }
+.btn[aria-pressed="true"] { background: var(--soft); }
+.status { color: var(--muted); font-size: .95rem; min-height: 1.4em; }
+.tip { color: var(--muted); font-size: .9rem; }
+
+.part { display: grid; gap: .7rem; }
+.part h3 span { font: 500 .8rem/1 var(--f-mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-right: .6rem; }
+.hint { color: var(--muted); font-size: .95rem; }
+.qgrid { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr)); }
+.qgrid.wide { grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr)); }
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: .6rem; padding: .8rem .9rem; display: grid; grid-template-columns: 1.9rem minmax(0, 1fr); gap: .6rem; break-inside: avoid; }
+.q::before { counter-increment: q; content: counter(q); font: 700 .85rem/1.9rem var(--f-mono); color: var(--muted); text-align: left; }
+.qb { display: grid; gap: .55rem; min-width: 0; }
+.expr { display: flex; flex-wrap: wrap; align-items: baseline; gap: .45rem .6rem; font-size: 1.2rem; min-width: 0; }
+.expr.small { font-size: 1.05rem; }
+.pw { display: inline-flex; align-items: flex-start; gap: .1rem; padding-top: .55rem; }
+.ans { font: inherit; font-size: 1.05rem; width: 6.2rem; padding: .3rem .5rem; border: 1.5px solid var(--line); border-bottom-color: var(--ink); border-radius: .4rem; background: var(--surface); color: var(--ink); min-width: 0; }
+.ans.sm { width: 3.6rem; transform: translateY(-.6rem); padding-inline: .35rem; text-align: center; }
+.ans.long { width: min(100%, 14rem); }
+.ans.ok { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 12%, var(--surface)); }
+.ans.bad { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 10%, var(--surface)); }
+.mk { font-weight: 700; min-width: 1em; }
+.mk.ok { color: var(--ok); }
+.mk.bad { color: var(--bad); }
+.key { display: none; font: 500 .85rem/1 var(--f-mono); color: var(--ok); background: color-mix(in srgb, var(--ok) 12%, var(--surface)); padding: .2rem .4rem; border-radius: .3rem; }
+.key-on .key { display: inline-block; }
+.tf { display: inline-flex; gap: .4rem; flex-wrap: wrap; }
+.tf button { font: inherit; font-size: 1rem; font-weight: 700; padding: .3rem .8rem; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 2rem; cursor: pointer; }
+.tf button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.tf button[aria-pressed="true"] sup.i { color: inherit; }
+.tf.ok { outline: 2px solid var(--ok); outline-offset: 3px; border-radius: 2rem; }
+.tf.bad { outline: 2px solid var(--bad); outline-offset: 3px; border-radius: 2rem; }
+.open { font: inherit; width: 100%; min-height: 4.5rem; padding: .5rem .6rem; border: 1.5px solid var(--line); border-radius: .4rem; background: var(--surface); color: var(--ink); resize: vertical; }
+.model { display: none; font-size: .9rem; color: var(--ok); }
+.key-on .model { display: block; }
+.ws-end { display: grid; gap: .6rem; }
+
+@media (max-width: 36rem) {
+  .run li { grid-template-columns: 1fr; }
+  .fields { grid-template-columns: 1fr; }
+  .rw-expr { font-size: 2.2rem; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ans, .cell, .btn { transition: border-color .15s, background-color .15s; }
+}
+
+/* print: only the open tab prints; always on white */
+@media print {
+  @page { size: A4; margin: 12mm; }
+  :root, :root:not([data-theme="light"]), :root[data-theme="dark"] {
+    --bg: #fff; --surface: #fff; --ink: #000; --muted: #333; --line: #999; --soft: #fff; --idx: #000; --accent: #000; --accent-ink: #fff; --ok: #000; --bad: #000;
+    color-scheme: light;
+  }
+  body { font-size: 11pt; padding: 0; }
+  .hero, .tabs, .bar, .tip, .status, .rewind, .mk { display: none !important; }
+  .panel { gap: 1rem; }
+  .ws-head, .q, .story, .rule, .exit { border-color: #777; }
+  .qgrid { grid-template-columns: repeat(2, 1fr); gap: .5rem; }
+  .qgrid.wide { grid-template-columns: 1fr; }
+  .q { padding: .5rem .6rem; }
+  .ans { border: 1px solid #000; border-radius: 2px; background: #fff !important; }
+  .tf button, .tf button[aria-pressed="true"] { background: #fff; color: #000; border: 1px solid #000; }
+  .tf.ok, .tf.bad { outline: 0; }
+  .open { border: 1px solid #000; min-height: 5rem; resize: none; }
+  .key-on .key { border: 1px solid #000; background: #fff; color: #000; }
+  .key-on .model { color: #000; }
+  .part { break-inside: avoid-page; }
+  sup.i { font-weight: 700; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="eyebrow">Mathematics · Number</p>
+  <h1>Indices<sup>1.3</sup></h1>
+  <div class="lo">
+    <div><b>Learning objective 1</b>Use positive, negative and zero indices.</div>
+    <div><b>Learning objective 2</b>Use index laws for multiplication and division.</div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Lesson pack sections">
+  <a id="tab-lesson" href="#lesson">Lesson plan<small>50 min, scenario and run sheet</small></a>
+  <a id="tab-practice" href="#practice">Worksheet A<small>Practice, 23 questions</small></a>
+  <a id="tab-challenge" href="#challenge">Worksheet B<small>Challenge, 17 questions</small></a>
+</nav>
+
+<!-- ============ LESSON ============ -->
+<main class="panel" id="panel-lesson">
+
+  <section class="sec">
+    <h2>Scenario: Rewind the Views</h2>
+    <div class="story">
+      <p>A video has exactly <b>1000 views at noon</b>, and its views <b>double every hour</b>. Students are asked how many views it had at 3 pm, then how many it had at 11 am and at 9 am. Going forward is easy. Going backward forces the question of what a power means when the index is zero or negative.</p>
+      <p>Count in thousands of views and call noon hour 0. Hour <i>n</i> has 2<sup class="i">n</sup> thousand views. The table below stays on screen all lesson and every rule is discovered from it.</p>
+    </div>
+
+    <div class="rewind" aria-labelledby="rw-h">
+      <div class="rw-top">
+        <h3 id="rw-h">Hour slider</h3>
+        <div class="seg" role="group" aria-label="Views multiply by">
+          <button type="button" class="bb" data-b="2" aria-pressed="true">×2</button>
+          <button type="button" class="bb" data-b="3" aria-pressed="false">×3</button>
+          <button type="button" class="bb" data-b="10" aria-pressed="false">×10</button>
+        </div>
+        <div class="rw-slide">
+          <label for="hr">Hour <output id="hrout" for="hr">0</output></label>
+          <input id="hr" type="range" min="-3" max="5" step="1" value="0">
+        </div>
+      </div>
+      <div class="rw-read" aria-live="polite">
+        <div class="rw-expr" id="rwExpr"></div>
+        <div class="rw-frac" id="rwFrac"></div>
+        <div class="rw-views" id="rwViews"></div>
+      </div>
+      <div class="cells-scroll"><div class="cells" id="rwCells"></div></div>
+      <p class="mono-note">Values in thousands of views. Tap a cell to jump to that hour.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>Run sheet</h2>
+    <ol class="run">
+      <li>
+        <div class="mins">5 min</div>
+        <div>
+          <h3>Predict the views</h3>
+          <p>Show the scenario. Students write predictions for 3 pm, 11 am and 9 am on mini whiteboards. Collect them without judging.</p>
+          <p class="say">Listen for 500 at 11 am. That is the first negative index in the room.</p>
+        </div>
+      </li>
+      <li>
+        <div class="mins">10 min</div>
+        <div>
+          <h3>Build the table</h3>
+          <p>Students fill the hour table from −3 to 5 as powers of 2. Moving right multiplies by 2 and moving left divides by 2. Ask what sits at hour 0, then why 2<sup class="i">−1</sup> must be a half.</p>
+          <p class="say">Use the slider on the projector to confirm. Name the two results: a<sup class="i">0</sup> = 1 and a<sup class="i">−n</sup> = 1/a<sup class="i">n</sup>.</p>
+        </div>
+      </li>
+      <li>
+        <div class="mins">10 min</div>
+        <div>
+          <h3>Discover the laws</h3>
+          <p>Pose three questions and let pairs answer from the table. After 3 hours and then 2 more hours, how many times larger is the video? After 5 hours forward and 2 back? How many times more views at hour 5 than at hour 2?</p>
+          <p class="say">Link each to 2<sup class="i">3</sup> × 2<sup class="i">2</sup>, 2<sup class="i">5</sup> × 2<sup class="i">−2</sup> and 2<sup class="i">5</sup> ÷ 2<sup class="i">2</sup>. Check each with ordinary numbers (8 × 4 = 32). Students state the pattern in their own words before you show the rules.</p>
+        </div>
+      </li>
+      <li>
+        <div class="mins">5 min</div>
+        <div>
+          <h3>Change the base</h3>
+          <p>Switch the slider to ×10 and ×3. The rules still hold. Cold-call examples on whiteboards, such as 10<sup class="i">4</sup> ÷ 10<sup class="i">6</sup> and 3<sup class="i">−2</sup> × 3<sup class="i">5</sup>.</p>
+        </div>
+      </li>
+      <li>
+        <div class="mins">15 min</div>
+        <div>
+          <h3>Practise</h3>
+          <p>Pairs work through <a href="#practice">Worksheet A</a>. Students use Check my answers after each part and fix the red boxes. Circulate and listen for the mistakes listed below.</p>
+        </div>
+      </li>
+      <li>
+        <div class="mins">5 min</div>
+        <div>
+          <h3>Challenge and exit ticket</h3>
+          <p>Early finishers start <a href="#challenge">Worksheet B</a>. Everyone answers the exit ticket before leaving.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="sec">
+    <h2>Key ideas</h2>
+    <div class="rules">
+      <div class="rule"><div class="f">a<sup class="i">0</sup> = 1</div><p>Any non-zero number to the power 0 is 1. It is the starting point of the table.</p></div>
+      <div class="rule"><div class="f">a<sup class="i">−n</sup> = 1 ÷ a<sup class="i">n</sup></div><p>A negative index gives a reciprocal. The answer is a positive fraction, not a negative number.</p></div>
+      <div class="rule"><div class="f">a<sup class="i">m</sup> × a<sup class="i">n</sup> = a<sup class="i">m+n</sup></div><p>Same base: keep the base and add the indices.</p></div>
+      <div class="rule"><div class="f">a<sup class="i">m</sup> ÷ a<sup class="i">n</sup> = a<sup class="i">m−n</sup></div><p>Same base: keep the base and subtract the indices, in that order.</p></div>
+    </div>
+    <div class="exit" style="margin-top:.25rem">
+      <h3>Success criteria</h3>
+      <ul class="plain">
+        <li>I can evaluate powers with positive, zero and negative indices, and write negative-index answers as fractions.</li>
+        <li>I can write products and quotients of powers with the same base as a single power.</li>
+        <li>I can find a missing index.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="two">
+    <div>
+      <h2>Common mistakes</h2>
+      <ul class="plain">
+        <li><b>2<sup class="i">−3</sup> = −8 or −6.</b> Walk left along the table. Each step halves the value, so it never goes below zero.</li>
+        <li><b>5<sup class="i">0</sup> = 0 or 5.</b> Point to the hour 0 cell. Nothing has been multiplied, so the value is 1.</li>
+        <li><b>2<sup class="i">3</sup> × 2<sup class="i">4</sup> = 4<sup class="i">7</sup>.</b> The base does not change. 8 × 16 = 128 = 2<sup class="i">7</sup>, but 4<sup class="i">7</sup> = 16 384.</li>
+        <li><b>3<sup class="i">2</sup> × 3<sup class="i">4</sup> = 3<sup class="i">8</sup>.</b> Students multiply the indices. Check with 9 × 81 = 729 = 3<sup class="i">6</sup>.</li>
+        <li><b>2<sup class="i">2</sup> ÷ 2<sup class="i">5</sup> = 2<sup class="i">3</sup>.</b> Subtracting the wrong way round. A small number divided by a large one is below 1, so the index must be negative.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Exit ticket</h2>
+      <div class="exit">
+        <p>1. Evaluate 6<sup class="i">0</sup>.</p>
+        <p>2. Write 5<sup class="i">4</sup> ÷ 5<sup class="i">6</sup> as a single power, then as a fraction.</p>
+        <p>3. Write 2<sup class="i">−3</sup> × 2<sup class="i">5</sup> as a single power, then evaluate it.</p>
+        <p class="mono-note">Answers: 1 · 5<sup class="i">−2</sup> = 1/25 · 2<sup class="i">2</sup> = 4</p>
+      </div>
+      <h3 style="margin-top:.5rem">Differentiation</h3>
+      <ul class="plain">
+        <li><b>Support:</b> keep to bases 2 and 10 and let students use the table for every question.</li>
+        <li><b>Stretch:</b> Worksheet B, which moves to letters as indices and unknown indices.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ WORKSHEET A ============ -->
+<main class="panel" id="panel-practice" hidden>
+  <header class="ws-head">
+    <h2><small>Indices 1.3 · Worksheet A</small>Practice</h2>
+    <div class="fields">
+      <label>Name<input type="text" id="a-name" autocomplete="off"></label>
+      <label>Class<input type="text" id="a-class" autocomplete="off"></label>
+      <label>Date<input type="text" id="a-date" autocomplete="off"></label>
+    </div>
+    <p class="tip">To print, stay on this tab and use your browser's print command (Ctrl+P, or Cmd+P on a Mac). Only this worksheet prints. Turn on the answer key first to print a teacher copy.</p>
+    <div class="bar">
+      <button type="button" class="btn main" data-act="check">Check my answers</button>
+      <button type="button" class="btn" data-act="clear">Clear all</button>
+      <button type="button" class="btn" data-act="key" aria-pressed="false">Show answer key</button>
+      <span class="status" role="status"></span>
+    </div>
+  </header>
+
+  <section class="part">
+    <h3><span>Part 1</span>Evaluate</h3>
+    <p class="hint">Write whole numbers as they are. Write fractions like 1/8 or as decimals.</p>
+    <ol class="qgrid">
+      <li class="q"><div class="qb"><div class="expr"><span>2<sup class="i">4</sup> =</span><input class="ans" data-a="16"></div></div></li>
+      <li class="q"><div class="qb"><div class="expr"><span>5<sup class="i">2</sup> =</span><input class="ans" data-a="25"></div></div></li>
+      <li class="q"><div class="qb"><div class="expr"><span>10<sup class="i">3</sup> =</span><input class="ans" data-a="1000"></div></div></li>
+      <li class="q"><div class="qb"><div class="expr"><span>7<sup class="i">0</sup> =</span><input class="ans" data-a="1"></div></div></li>
+      <li class="q"><div class="qb"><div class="expr"><span>3<sup class="i">−1</sup> =</span><input class="ans" data-a="1/3"></div></div></li>
+      <li class="q"><div class="qb"><div class="expr"><span>2<sup class="i">−3</sup> =</span><input class="ans" data-a="1/8"></div></div></li>
+      <li class="q"><div class="qb"><div class="expr"><span>10<sup class="i">−2</sup> =</span><input class="ans" data-a="1/100"></div></div></li>
+      <li class="q"><div class="qb"><div class="expr"><span>4<sup class="i">−2</sup> =</span><input class="ans" data-a="1/16"></div></div></li>
+    </ol>
+  </section>
+
+  <section class="part">
+    <h3><span>Part 2</span>Multiply and divide</h3>
+    <p class="hint">Write each answer as a single power. Type the index in the small box.</p>
+    <ol class="qgrid">
+      <li class="q"><div class="qb"><div class="expr small"><span>3<sup class="i">2</sup> × 3<sup class="i">4</sup> =</span><span class="pw">3<input class="ans sm" data-a="6"></span></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span>5<sup class="i">7</sup> × 5<sup class="i">−2</sup> =</span><span class="pw">5<input class="ans sm" data-a="5"></span></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span>2<sup class="i">3</sup> × 2<sup class="i">−3</sup> =</span><span class="pw">2<input class="ans sm" data-a="0"></span></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span>6<sup class="i">8</sup> ÷ 6<sup class="i">3</sup> =</span><span class="pw">6<input class="ans sm" data-a="5"></span></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span>4<sup class="i">2</sup> ÷ 4<sup class="i">5</sup> =</span><span class="pw">4<input class="ans sm" data-a="-3"></span></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span>9<sup class="i">−2</sup> × 9<sup class="i">6</sup> =</span><span class="pw">9<input class="ans sm" data-a="4"></span></div></div></li>
+    </ol>
+  </section>
+
+  <section class="part">
+    <h3><span>Part 3</span>Find the missing index</h3>
+    <ol class="qgrid">
+      <li class="q"><div class="qb"><div class="expr small"><span class="pw">2<input class="ans sm" data-a="5"></span><span>× 2<sup class="i">3</sup> = 2<sup class="i">8</sup></span></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span>7<sup class="i">9</sup> ÷</span><span class="pw">7<input class="ans sm" data-a="5"></span><span>= 7<sup class="i">4</sup></span></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span class="pw">3<input class="ans sm" data-a="0"></span><span>= 1</span></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span class="pw">5<input class="ans sm" data-a="-1"></span><span>= 1/5</span></div></div></li>
+    </ol>
+  </section>
+
+  <section class="part">
+    <h3><span>Part 4</span>True or false</h3>
+    <p class="hint">Tap or circle one answer for each statement.</p>
+    <ol class="qgrid">
+      <li class="q"><div class="qb"><div class="expr small"><span>2<sup class="i">3</sup> × 2<sup class="i">2</sup> = 2<sup class="i">6</sup></span></div><div class="tf" data-a="F"><button type="button" data-v="T">True</button><button type="button" data-v="F">False</button></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span>8<sup class="i">0</sup> = 0</span></div><div class="tf" data-a="F"><button type="button" data-v="T">True</button><button type="button" data-v="F">False</button></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span>10<sup class="i">4</sup> ÷ 10<sup class="i">2</sup> = 10<sup class="i">2</sup></span></div><div class="tf" data-a="T"><button type="button" data-v="T">True</button><button type="button" data-v="F">False</button></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span>2<sup class="i">−1</sup> = −2</span></div><div class="tf" data-a="F"><button type="button" data-v="T">True</button><button type="button" data-v="F">False</button></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span>5<sup class="i">−2</sup> = 1/25</span></div><div class="tf" data-a="T"><button type="button" data-v="T">True</button><button type="button" data-v="F">False</button></div></div></li>
+    </ol>
+  </section>
+
+  <div class="bar ws-end">
+    <button type="button" class="btn main" data-act="check">Check my answers</button>
+    <span class="status" role="status"></span>
+  </div>
+</main>
+
+<!-- ============ WORKSHEET B ============ -->
+<main class="panel" id="panel-challenge" hidden>
+  <header class="ws-head">
+    <h2><small>Indices 1.3 · Worksheet B</small>Challenge</h2>
+    <div class="fields">
+      <label>Name<input type="text" id="b-name" autocomplete="off"></label>
+      <label>Class<input type="text" id="b-class" autocomplete="off"></label>
+      <label>Date<input type="text" id="b-date" autocomplete="off"></label>
+    </div>
+    <p class="tip">To print, stay on this tab and use your browser's print command (Ctrl+P, or Cmd+P on a Mac). Only this worksheet prints. Turn on the answer key first to print a teacher copy.</p>
+    <div class="bar">
+      <button type="button" class="btn main" data-act="check">Check my answers</button>
+      <button type="button" class="btn" data-act="clear">Clear all</button>
+      <button type="button" class="btn" data-act="key" aria-pressed="false">Show answer key</button>
+      <span class="status" role="status"></span>
+    </div>
+  </header>
+
+  <section class="part">
+    <h3><span>Part 1</span>Combine the laws</h3>
+    <p class="hint">Work left to right. Write the result as a single power, then as a number where asked.</p>
+    <ol class="qgrid wide">
+      <li class="q"><div class="qb"><div class="expr small"><span>2<sup class="i">5</sup> × 2<sup class="i">−2</sup> ÷ 2<sup class="i">1</sup> =</span><span class="pw">2<input class="ans sm" data-a="2"></span><span>=</span><input class="ans" data-a="4"></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span>(5<sup class="i">−2</sup> × 5<sup class="i">4</sup>) ÷ 5<sup class="i">−1</sup> =</span><span class="pw">5<input class="ans sm" data-a="3"></span></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span>7<sup class="i">−3</sup> × 7<sup class="i">3</sup> ÷ 7<sup class="i">−4</sup> =</span><span class="pw">7<input class="ans sm" data-a="4"></span></div></div></li>
+    </ol>
+  </section>
+
+  <section class="part">
+    <h3><span>Part 2</span>Find the unknown index</h3>
+    <ol class="qgrid">
+      <li class="q"><div class="qb"><div class="expr small"><span>3<sup class="i">x</sup> × 3<sup class="i">5</sup> = 3<sup class="i">2</sup></span></div><div class="expr small"><span><i>x</i> =</span><input class="ans" data-a="-3"></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span>2<sup class="i">x</sup> ÷ 2<sup class="i">−3</sup> = 2<sup class="i">7</sup></span></div><div class="expr small"><span><i>x</i> =</span><input class="ans" data-a="4"></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span>5<sup class="i">x</sup> = 1/25</span></div><div class="expr small"><span><i>x</i> =</span><input class="ans" data-a="-2"></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span>10<sup class="i">x</sup> = 0.0001</span></div><div class="expr small"><span><i>x</i> =</span><input class="ans" data-a="-4"></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span>2<sup class="i">x</sup> × 2<sup class="i">x</sup> = 2<sup class="i">−10</sup></span></div><div class="expr small"><span><i>x</i> =</span><input class="ans" data-a="-5"></div></div></li>
+    </ol>
+  </section>
+
+  <section class="part">
+    <h3><span>Part 3</span>Compare and find the error</h3>
+    <ol class="qgrid wide">
+      <li class="q"><div class="qb"><div class="expr small"><span>Which is larger?</span></div><div class="tf" data-a="A"><button type="button" data-v="A">2<sup class="i">−3</sup></button><button type="button" data-v="B">3<sup class="i">−2</sup></button></div><p class="model">1/8 = 0.125 is larger than 1/9 = 0.111…</p></div></li>
+      <li class="q"><div class="qb">
+        <div class="expr small"><span>Sam writes 2<sup class="i">3</sup> × 2<sup class="i">4</sup> = 4<sup class="i">7</sup>. The correct answer is</span><span class="pw">2<input class="ans sm" data-a="7"></span></div>
+        <label for="b-explain" class="hint">Explain Sam's mistake.</label>
+        <textarea class="open" id="b-explain"></textarea>
+        <p class="model">Model answer: the base stays 2 when you multiply powers of the same base, and only the indices are added. 2<sup class="i">3</sup> × 2<sup class="i">4</sup> = 8 × 16 = 128 = 2<sup class="i">7</sup>, but 4<sup class="i">7</sup> = 16 384.</p>
+      </div></li>
+    </ol>
+  </section>
+
+  <section class="part">
+    <h3><span>Part 4</span>Letters as indices</h3>
+    <p class="hint">Type powers as x^2, and fractions as 1/x. Write 2^(n+3) when the index has more than one term.</p>
+    <ol class="qgrid">
+      <li class="q"><div class="qb"><div class="expr small"><span><i>x</i><sup class="i">5</sup> × <i>x</i><sup class="i">−2</sup> ÷ <i>x</i><sup class="i">4</sup> =</span></div><div><input class="ans long" data-a="1/x|x^-1"></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span><i>y</i><sup class="i">−2</sup> × <i>y</i><sup class="i">7</sup> ÷ <i>y</i><sup class="i">3</sup> =</span></div><div><input class="ans long" data-a="y^2"></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span>Write 8 × 2<sup class="i"><i>n</i></sup> as a single power of 2. (Hint: 8 = 2<sup class="i">3</sup>)</span></div><div><input class="ans long" data-a="2^(n+3)|2^(3+n)"></div></div></li>
+      <li class="q"><div class="qb"><div class="expr small"><span>3<sup class="i"><i>n</i>+2</sup> ÷ 3<sup class="i"><i>n</i></sup> =</span><input class="ans" data-a="9"></div></div></li>
+    </ol>
+  </section>
+
+  <section class="part">
+    <h3><span>Part 5</span>In context</h3>
+    <ol class="qgrid wide">
+      <li class="q"><div class="qb">
+        <p>A video has 2<sup class="i"><i>t</i></sup> thousand views at hour <i>t</i>.</p>
+        <div class="expr small"><span>(a) Thousands of views at <i>t</i> = −2:</span><input class="ans" data-a="1/4"></div>
+        <div class="expr small"><span>(b) Times more views at <i>t</i> = 5 than at <i>t</i> = 2:</span><input class="ans" data-a="8"></div>
+      </div></li>
+      <li class="q"><div class="qb">
+        <p>A virus is 10<sup class="i">−7</sup> m wide. A cell is 10<sup class="i">−5</sup> m wide.</p>
+        <div class="expr small"><span>The cell is wider by a factor of 10<input class="ans sm" data-a="2" style="transform:translateY(-.5rem);margin-left:.1rem" aria-label="index"></span><span>=</span><input class="ans" data-a="100"></div>
+      </div></li>
+      <li class="q"><div class="qb">
+        <p>2<sup class="i"><i>a</i></sup> × 2<sup class="i"><i>b</i></sup> = 2<sup class="i">5</sup> and 2<sup class="i"><i>a</i></sup> ÷ 2<sup class="i"><i>b</i></sup> = 2<sup class="i">1</sup></p>
+        <div class="expr small"><span><i>a</i> =</span><input class="ans" data-a="3"><span><i>b</i> =</span><input class="ans" data-a="2"></div>
+      </div></li>
+    </ol>
+  </section>
+
+  <section class="part">
+    <h3><span>Extension</span>Make your own</h3>
+    <div class="q" style="grid-template-columns:1fr">
+      <div class="qb">
+        <label for="b-own" class="hint">Write three different calculations using index laws that all equal 2<sup class="i">−2</sup>.</label>
+        <textarea class="open" id="b-own"></textarea>
+        <p class="model">Examples: 2<sup class="i">3</sup> ÷ 2<sup class="i">5</sup> · 2<sup class="i">−5</sup> × 2<sup class="i">3</sup> · 2<sup class="i">0</sup> ÷ 2<sup class="i">2</sup>. Check that each one has an index total of −2.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bar ws-end">
+    <button type="button" class="btn main" data-act="check">Check my answers</button>
+    <span class="status" role="status"></span>
+  </div>
+</main>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var MINUS = '−';
+
+  /* ---------- tabs ---------- */
+  var names = ['lesson', 'practice', 'challenge'];
+  function route() {
+    var h = (location.hash || '').replace('#', '');
+    if (names.indexOf(h) < 0) h = 'lesson';
+    names.forEach(function (n) {
+      $('#panel-' + n).hidden = (n !== h);
+      var t = $('#tab-' + n);
+      if (n === h) t.setAttribute('aria-current', 'page'); else t.removeAttribute('aria-current');
+    });
+  }
+  window.addEventListener('hashchange', function () { route(); window.scrollTo(0, 0); });
+  route();
+
+  /* ---------- hour slider ---------- */
+  var base = 2;
+  var hr = $('#hr');
+  var cellsBox = $('#rwCells');
+  function fmtExp(n) { return (n < 0 ? MINUS : '') + Math.abs(n); }
+  function valText(b, n) { return n < 0 ? '1/' + Math.pow(b, -n) : String(Math.pow(b, n)); }
+  function clock(n) { var h = ((12 + n) % 24 + 24) % 24; return (h < 10 ? '0' : '') + h + ':00'; }
+  function buildCells() {
+    var h = '';
+    for (var k = -3; k <= 5; k++) {
+      h += '<button type="button" class="cell" data-k="' + k + '"><span class="ck">' + base +
+        '<sup class="i">' + fmtExp(k) + '</sup></span><span class="cv">' + valText(base, k) + '</span></button>';
+    }
+    cellsBox.innerHTML = h;
+  }
+  function render() {
+    var n = +hr.value;
+    $('#hrout').textContent = fmtExp(n);
+    $('#rwExpr').innerHTML = base + '<sup class="i">' + fmtExp(n) + '</sup>';
+    var f;
+    if (n < 0) f = '= 1 ÷ ' + base + '<sup class="i">' + (-n) + '</sup> = 1/' + Math.pow(base, -n);
+    else if (n === 0) f = '= 1';
+    else f = '= ' + Math.pow(base, n);
+    $('#rwFrac').innerHTML = f;
+    var v = 1000 * Math.pow(base, n), r = Math.round(v);
+    $('#rwViews').textContent = 'At ' + clock(n) + ' the video has ' + (Math.abs(v - r) > 1e-9 ? 'about ' : '') + r.toLocaleString('en-US') + ' views.';
+    $$('.cell', cellsBox).forEach(function (c) {
+      var on = +c.getAttribute('data-k') === n;
+      c.classList.toggle('on', on);
+      c.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+  hr.addEventListener('input', render);
+  cellsBox.addEventListener('click', function (e) {
+    var c = e.target.closest ? e.target.closest('.cell') : null;
+    if (!c) return;
+    hr.value = c.getAttribute('data-k');
+    render();
+  });
+  $$('.bb').forEach(function (b) {
+    b.addEventListener('click', function () {
+      base = +b.getAttribute('data-b');
+      $$('.bb').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      buildCells(); render();
+    });
+  });
+  buildCells(); render();
+
+  /* ---------- answer checking ---------- */
+  function norm(s) {
+    return String(s).toLowerCase()
+      .replace(/[−–—]/g, '-')
+      .replace(/\*\*/g, '^')
+      .replace(/\s+/g, '');
+  }
+  function num(s) {
+    s = norm(s);
+    var m;
+    if (/^-?\d+(\.\d+)?$/.test(s)) return parseFloat(s);
+    m = s.match(/^(-?\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)$/);
+    if (m) { var d = parseFloat(m[2]); return d ? parseFloat(m[1]) / d : null; }
+    return null;
+  }
+  function matches(val, spec) {
+    var v = norm(val);
+    if (!v) return false;
+    var vn = num(v);
+    return spec.split('|').some(function (a) {
+      var an = num(a);
+      if (an !== null && vn !== null) return Math.abs(an - vn) < 1e-9;
+      return norm(a) === v;
+    });
+  }
+  function pretty(s) {
+    return s.replace(/^-/, MINUS);
+  }
+
+  $$('.panel').forEach(function (panel) {
+    var pid = panel.id.replace('panel-', '');
+    var qn = 0;
+    $$('.q', panel).forEach(function (q) {
+      qn++;
+      $$('.ans, .tf', q).forEach(function (el, i) {
+        var mk = document.createElement('span');
+        mk.className = 'mk';
+        mk.setAttribute('role', 'img');
+        var key = document.createElement('span');
+        key.className = 'key';
+        if (el.classList.contains('tf')) {
+          var right = $('button[data-v="' + el.getAttribute('data-a') + '"]', el);
+          key.textContent = right ? right.textContent.replace('-', MINUS) : '';
+          el.setAttribute('role', 'group');
+          el.setAttribute('aria-label', 'Question ' + qn + ' choice');
+          el.after(mk, key);
+        } else {
+          key.textContent = pretty(el.getAttribute('data-a').split('|')[0]);
+          if (!el.id) el.id = pid + '-q' + qn + '-' + (i + 1);
+          if (!el.getAttribute('aria-label')) el.setAttribute('aria-label', 'Question ' + qn + ' answer');
+          el.setAttribute('autocomplete', 'off');
+          el.setAttribute('autocapitalize', 'off');
+          el.setAttribute('spellcheck', 'false');
+          (el.closest('.pw') || el).after(mk, key);
+        }
+        el._mk = mk;
+      });
+    });
+
+    function setMark(el, state) {
+      el.classList.remove('ok', 'bad');
+      el._mk.classList.remove('ok', 'bad');
+      el._mk.textContent = '';
+      el._mk.removeAttribute('aria-label');
+      if (state) {
+        el.classList.add(state);
+        el._mk.classList.add(state);
+        el._mk.textContent = state === 'ok' ? '✓' : '✗';
+        el._mk.setAttribute('aria-label', state === 'ok' ? 'correct' : 'not correct');
+      }
+    }
+    function say(t) { $$('.status', panel).forEach(function (s) { s.textContent = t; }); }
+
+    function check() {
+      var total = 0, right = 0, blank = 0;
+      $$('.ans', panel).forEach(function (el) {
+        total++;
+        if (!el.value.trim()) { blank++; setMark(el, null); return; }
+        if (matches(el.value, el.getAttribute('data-a'))) { right++; setMark(el, 'ok'); }
+        else setMark(el, 'bad');
+      });
+      $$('.tf', panel).forEach(function (el) {
+        total++;
+        var sel = $('button[aria-pressed="true"]', el);
+        if (!sel) { blank++; setMark(el, null); return; }
+        if (sel.getAttribute('data-v') === el.getAttribute('data-a')) { right++; setMark(el, 'ok'); }
+        else setMark(el, 'bad');
+      });
+      var t = right + ' of ' + total + ' correct.';
+      if (blank) t += ' ' + blank + ' not answered yet.';
+      else if (right < total) t += ' Fix the boxes marked ✗ and check again.';
+      else t += ' Every answer is right.';
+      say(t);
+    }
+    function clear() {
+      $$('.ans', panel).forEach(function (el) { el.value = ''; setMark(el, null); });
+      $$('.tf', panel).forEach(function (el) {
+        $$('button', el).forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+        setMark(el, null);
+      });
+      $$('.open', panel).forEach(function (el) { el.value = ''; });
+      say('');
+    }
+
+    panel.addEventListener('input', function (e) {
+      var el = e.target;
+      if (el.classList && el.classList.contains('ans') && el._mk) setMark(el, null);
+    });
+    panel.addEventListener('click', function (e) {
+      var tfb = e.target.closest ? e.target.closest('.tf button') : null;
+      if (tfb) {
+        var grp = tfb.parentNode;
+        $$('button', grp).forEach(function (b) { b.setAttribute('aria-pressed', b === tfb ? 'true' : 'false'); });
+        setMark(grp, null);
+        return;
+      }
+      var act = e.target.closest ? e.target.closest('[data-act]') : null;
+      if (!act) return;
+      var a = act.getAttribute('data-act');
+      if (a === 'check') check();
+      else if (a === 'clear') clear();
+      else if (a === 'key') {
+        var on = !document.body.classList.contains('key-on');
+        document.body.classList.toggle('key-on', on);
+        $$('[data-act="key"]').forEach(function (b) {
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          b.textContent = on ? 'Hide answer key' : 'Show answer key';
+        });
+      }
+    });
+  });
+})();
+</script>
+
+</body></html>
